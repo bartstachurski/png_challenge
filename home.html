@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+var jokes = [];
+const url = 'http://api.icndb.com/jokes/random/3';
+fetch(url).then(response => response.json()).then(data => console.log(data));
+fetch('http://api.icndb.com/jokes')
+  .then(response => response.json())
+  .then(response => {
+    jokes = response;
+    console.log("This is the jokes:");
+    console.log(jokes);
+    // document.getElementById("jokes").innerHTML = jokes[0].joke;
+  })
+  .catch(err => {
+    console.log("error bro!");
+  });
+</script>
   <title></title>
 </head>
 <body>
+    <h1>Chuck Norris Jokes</h1>
+    <ul id="jokes"></ul>
 
 </body>
 </html>
-
-<script>
-const url = 'http://api.icndb.com/jokes';
-fetch(url).then(response => response.json()).then(data => console.log(data));
-</script>
