@@ -8,9 +8,20 @@ fetch(url).then(response => response.json()).then(data => console.log(data));
 fetch('http://api.icndb.com/jokes')
   .then(response => response.json())
   .then(response => {
-    jokes = response;
+    jokes = response["value"];
     console.log("This is the jokes:");
     console.log(jokes);
+    var text;
+    // jokes = ["Banana", "Orange", "Apple", "Mango"];
+
+    text = "<ul>";
+    jokes.forEach(myFunction);
+    text += "</ul>";
+    document.getElementById("demo").innerHTML = text;
+
+    function myFunction(joke) {
+      text += "<li>" + joke["joke"] + "</li>";
+    } 
     // document.getElementById("jokes").innerHTML = jokes[0].joke;
   })
   .catch(err => {
@@ -20,8 +31,12 @@ fetch('http://api.icndb.com/jokes')
   <title></title>
 </head>
 <body>
-    <h1>Chuck Norris Jokes</h1>
-    <ul id="jokes"></ul>
+  <h1>Chuck Norris Jokes</h1>
+  <ul id="jokes"></ul>
+  <p id="demo"></p>
+
+<script>
+</script>
 
 </body>
 </html>
